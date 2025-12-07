@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy 8th Months Anniversary Princess</title>
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: #e9d7ff;
+        font-family: "Playfair Display", serif;
+        color: #4a2d67;
+        overflow-x: hidden;
+    }
+
+    /* PAGE CONTAINERS */
+    #page1, #page2 {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 1.5s ease;
+    }
+
+    #page2 {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    h2 {
+        font-family: "Great Vibes", cursive;
+        font-size: 42px;
+        color: #6c3bbf;
+        margin-bottom: 5px;
+        text-align: center;
+    }
+
+    .box {
+        background: white;
+        padding: 30px;
+        border-radius: 25px;
+        max-width: 500px;
+        width: 85%;
+        text-align: center;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+        border: 1px solid #d2b6ff;
+        animation: fadeIn 2s ease;
+    }
+
+    p {
+        font-size: 17px;
+        line-height: 1.6;
+    }
+
+    input {
+        width: 80%;
+        padding: 12px;
+        margin-top: 20px;
+        border-radius: 10px;
+        border: 1px solid #b89ad0;
+        font-size: 15px;
+        text-align: center;
+    }
+
+    button {
+        margin-top: 15px;
+        padding: 12px 25px;
+        background: #854bff;
+        border: none;
+        border-radius: 12px;
+        font-size: 16px;
+        color: white;
+        cursor: pointer;
+        transition: 0.3s;
+        font-family: "Playfair Display", serif;
+    }
+
+    button:hover {
+        background: #6e32e0;
+    }
+
+    /* Hint */
+    #hint {
+        position: absolute;
+        bottom: 20px;
+        text-align: center;
+        width: 100%;
+        font-size: 15px;
+        color: black;
+        opacity: 1;
+        transition: opacity 1.5s ease;
+    }
+
+    /* PAPER STYLE */
+    #paperContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: opacity 1.5s ease;
+        width: 100%;
+        height: 100%;
+    }
+
+    #paper {
+        background: #fff8f0;
+        width: 600px;
+        max-width: 90%;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        font-family: "Playfair Display", serif;
+        font-size: 18px;
+        line-height: 1.7;
+        white-space: pre-wrap;
+        overflow-y: auto;
+        max-height: 80%;
+        position: relative;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+</style>
+</head>
+
+<body>
+
+<!-- FIRST PAGE -->
+<div id="page1">
+    <h2>Happy 8th Months Anniversary Princess</h2>
+
+    <div class="box">
+        <p>Enter the secret code to unlock your anniversary message.</p>
+        <input type="password" id="code" placeholder="Enter unlock code">
+        <button onclick="unlock()">Unlock Message</button>
+    </div>
+
+    <div id="hint">
+        Hint: How long has our love story been going on?
+    </div>
+</div>
+
+<!-- SECOND PAGE -->
+<div id="page2">
+    <div id="paperContainer">
+        <div id="paper"></div>
+    </div>
+</div>
+
+<script>
+const message = `Happy 8th month anniversary to us.
+Our relationship hasn't been a year, but I feel like we've come a long way, we've had our share of ups and downs, well, part of it because I know there are more.
+
+Anyway, never thought we'd make it this far, but we are still here, still going, and I know sometimes it will feel like there's no love, you know, distance, but I pray that every time that happens, we remember our love for each other.
+
+I love you Anane Divine Favour ❤️
+Thank you for being you and loving me.
+Forever yours🫶🏼❤️`;
+
+function unlock() {
+    const val = document.getElementById("code").value.trim().toLowerCase();
+    if (val === "8months" || val === "8 months") {
+
+        // Fade out page 1
+        document.getElementById("page1").style.opacity = 0;
+        document.getElementById("hint").style.opacity = 0;
+
+        setTimeout(() => {
+            document.getElementById("page1").style.display = "none";
+
+            // Show page 2
+            const p2 = document.getElementById("page2");
+            p2.style.pointerEvents = "auto";
+            p2.style.opacity = 1;
+
+            // Fade in paper
+            const paperContainer = document.getElementById("paperContainer");
+            paperContainer.style.opacity = 1;
+
+            // Typewriter effect
+            const paper = document.getElementById("paper");
+            let i = 0;
+            function typeWriter() {
+                if (i < message.length) {
+                    paper.innerText += message.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 35); // typing speed
+                }
+            }
+            setTimeout(typeWriter, 500); // start typing after short delay
+
+        }, 1500);
+
+    } else {
+        alert("Incorrect code, princess. Try again.");
+    }
+}
+</script>
+
+</body>
+</html>
